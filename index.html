@@ -7,31 +7,15 @@
   <title>Notes App</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-  <link rel="stylesheet" type="text/css" href="modal.css" />
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Notes App</a>
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" id="searchTxt" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
-    </div> -->
   </nav>
 
+  <!-- index -->
   <div class="container my-3">
     <div class="card" style="width: 25rem">
       <div class="card-body">
@@ -45,37 +29,29 @@
         <button class="btn btn-primary" id="addBtn">Add</button>
       </div>
     </div>
-
-    <div id="visModal"></div>
-
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="card" style="width: 25rem">
-          <div class="card-body">
-            <label for="editTitle">Title</label>
-            <div class="form-group">
-              <input class="form-control" id="editTitle" value=""></input>
-            </div>
-            <label for="editBody">Body</label>
-            <div class="form-group">
-              <textarea class="form-control" id="editBody" rows="2"></textarea>
-            </div>
-          </div>
-        </div>
-        <span class="close">&times;</span>
-      </div>
-    </div>
-
     <hr />
     <h3>Your Notes</h3>
-    <div id="notes" class="row container-fluid">
-    </div>
+    <div id="notes" class="row container-fluid"></div>
   </div>
 
-
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <label for="editTitle">Title</label>
+          <div class="form-group">
+            <input class="form-control" id="editTitle" value=""></input>
+          </div>
+          <label for="editBody">Body</label>
+          <div class="form-group">
+            <textarea class="form-control" id="editBody" rows="2"></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -86,8 +62,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-  <script src="js/app.js"></script>
-  <script src="js/modal.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>

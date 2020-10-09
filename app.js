@@ -1,6 +1,4 @@
-// https://www.w3schools.com/html/html5_webstorage.asp
-
-console.log("I am in js/app.js file");
+console.log("I am in app.js file");
 displayNotes();
 
 // if user adds a note, add it to the local storage
@@ -37,9 +35,8 @@ function displayNotes() {
     html += `<div class="noteCard card my-2 mx-2 " style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title">${element.title}</h5>
-                <p class="card-text">${element.body}</p>  
-                <!-- Trigger/Open The Modal -->         
-                <button class="btn btn-primary" id="myBtn" onclick="editNote()">Edit</button>
+                <p class="card-text">${element.body}</p>
+                <button class="btn btn-primary" id="${index}" data-toggle="modal" data-target="#myModal" onclick="editNote(this.id)">Edit</button>
                 <button class="btn btn-primary" id="${index}" onclick="deleteNote(this.id)">Delete</button>
               </div>
             </div>`;
@@ -52,21 +49,25 @@ function displayNotes() {
   }
 }
 
-function editNote() {
-  var modal = document.getElementById("myModal");   // Get the modal
-  modal.style.display = "block";  // When the user clicks on the button, open the modal
-
-  var span = document.getElementsByClassName("close")[0];   // Get the <span> element that closes the modal
-  span.onclick = function () {    // When the user clicks on <span> (x), close the modal
-    modal.style.display = "none";
+function editNote(index) {
+  let notesValue = localStorage.getItem('notes');
+  if (notesValue == null) {
+    notesArray = [];
+  } else {
+    notesArray = JSON.parse(notesValue);
   }
-
-  window.onclick = function (event) {   // When the user clicks anywhere outside of the modal, close it
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-
+  console.log(notesArray[index]);
+  var newTitle = document.getElementById('editTitle');
+  newTitle.value = notesArray[index].title;
+  var newBody = document.getElementById("editBody");
+  newBody.value = notesArray[index].body;
+  $('#myModal').on('hidden.bs.modal', function (e) {
+    notesArray[index].title = newTitle.value;
+    notesArray[index].body = newBody.value;
+    localStorage.setItem("notes", JSON.stringify(notesArray));
+    console.log(notesArray[index]);
+    displayNotes();
+  })
 }
 
 function deleteNote(index) {
@@ -80,13 +81,3 @@ function deleteNote(index) {
   localStorage.setItem("notes", JSON.stringify(notesArray));
   displayNotes();
 }
-
-
-// let search = document.getElementById('searchTxt');
-// search.addEventListener("input", function () {
-//   let inputValue = search.value;
-//   console.log("input event fired: ", inputValue);
-//   let noteCards = document.getElementsByClassName("noteCard");
-//   Array.from(noteCards).forEach(function(element) {
-//   })
-// })
